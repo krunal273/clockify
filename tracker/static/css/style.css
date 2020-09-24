@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    background-color: #f2f6f8;
+}
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar ul {
+    padding: 0;
+    margin: 50px 0 0 0;
+}
+
+.sidebar ul li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.sidebar a.active {
+    background-color: #ddd;
+    color: black;
+}
+
+
+.sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+.container {
+    margin-left: 200px;
+    padding: 30px;
+    height: 1000px;
+    /* margin-top: 10px; */
+}
+
+@media screen and (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidebar a {
+        float: left;
+    }
+
+    .container {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
+    }
+}
+
+
+/* Container Start */
+
+/* Pattern styles */
+.row {
+    display: flex;
+}
+
+.left-half {
+    /* background-color: #ff9e2c; */
+    flex: 1;
+    padding: 1rem;
+}
+
+.right-half {
+    /* background-color: #b6701e; */
+    flex: 1;
+    padding: 1rem;
+}
+
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+button[type=button],
+button[type=submit],
+button[type=reset] {
+    background-color: #03a9f4;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
