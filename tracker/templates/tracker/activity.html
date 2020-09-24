@@ -1,0 +1,39 @@
+{% extends 'tracker/index.html' %} {% block content %}
+
+<div class="row">
+    <div class="left-half">
+        <h1>Add Activity Here</h1>
+        <div class="tracker-box">
+            <form action="{% url 'add' %}" method="POST" role="form">
+                {% csrf_token %} {{ formActivity.title }} {{ formActivity.project }}
+                <button type="submit" value="activity">Start</button>
+                <button type="button">End</button>
+            </form>
+        </div>
+    </div>
+    <div class="right-half">
+        <h1>Add Project Here</h1>
+
+        <form action="{% url 'project' %}" method="POST" role="form">
+            {% csrf_token %} {{ formProject.title }}
+            <button type="submit" value="project">Add Project</button>
+        </form>
+
+        <h2>Activity name: Unknown</h2>
+        <h2>Start Time:</h2>
+        <h2>End Time:</h2>
+    </div>
+</div>
+
+<hr />
+
+<div class="list-activity">
+    <ul>
+        {% for ac in activity %}
+        <li id="{{ac.id}}">{{ac.title}} - {{ac.startTime}} - {{ac.endTime}} - {{ac.complete}}</li>
+        {% endfor %}
+    </ul>
+
+</div>
+
+{% endblock content %}

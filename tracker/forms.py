@@ -1,23 +1,23 @@
 from django import forms
-from .models import Tracker, Project
+from .models import Activity, Project
 
 
-# class TrackForm(forms.ModelForm):
-
-#     class Meta:
-#         model = Tracker
-#         fields = ['title', 'project']
-
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.fields['project'].queryset = Project.objects.all()
-
-class TrackForm(forms.Form):
+class ActivityForm(forms.Form):
     title = forms.CharField(max_length=50,
                             widget=forms.TextInput(
                                 attrs={
-                                    'class': 'xyz',
+                                    'class': 'title',
                                     'placeholder': 'Enter activity name'
                                 }))
 
-    project = forms.ModelChoiceField(queryset=Project.objects.all())
+    project = forms.ModelChoiceField(queryset=Project.objects.all(
+    ), widget=forms.Select(attrs={'class': 'project'}))
+
+
+class ProjectForm(forms.Form):
+    title = forms.CharField(max_length=50,
+                            widget=forms.TextInput(
+                                attrs={
+                                    'class': 'title-project',
+                                    'placeholder': 'Enter Project name'
+                                }))

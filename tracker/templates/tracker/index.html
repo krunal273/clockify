@@ -22,24 +22,7 @@
         </ul>
       </div>
 
-      <div class="container">
-        <div class="row">
-          <div class="left-half">
-            <div class="tracker-box">
-              <form action="{% url 'add' %}" method="POST" role="form">
-                {% csrf_token %} {{ form.title }} {{ form.project }}
-                <button type="submit">Start</button>
-                <button type="button">End</button>
-              </form>
-            </div>
-          </div>
-          <div class="right-half">
-            <h2>Activity name: Unknown</h2>
-            <h2>Start Time:</h2>
-            <h2>End Time:</h2>
-          </div>
-        </div>
-      </div>
+      <div class="container">{% block content %}{% endblock %}</div>
     </div>
 
     <script src="{% static '/js/main.js' %}"></script>

@@ -6,7 +6,7 @@ from datetime import datetime
 # Create your models here.
 
 
-class Tracker(models.Model):
+class Activity(models.Model):
     title = models.CharField(max_length=50)
     startTime = models.DateTimeField(default=datetime.now())
     endTime = models.DateTimeField()
