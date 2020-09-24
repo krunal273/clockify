@@ -5,12 +5,13 @@ from datetime import datetime
 
 # Create your views here.
 from .forms import TrackForm
-from .models import Tracker
+from .models import Tracker, Project
 
 
 def index(request):
     """  """
     form = TrackForm
+    print(form)
     context = {'form': form}
     return render(request, 'tracker/index.html', context)
 
@@ -20,15 +21,13 @@ def add(request):
     form = TrackForm(request.POST)
 
     if form.is_valid():
-        # data = {
-        #     'title': request.POST['title'],
-        # }
 
         title = request.POST['title']
-        # startTime = datetime.now()
+        project = Project.objects.get(id=request.POST['project'])
 
         tracker = Tracker(title=title, startTime=datetime.now(),
-                          endTime=datetime.now())
+                          endTime=datetime.now(), project=project)
+
         tracker.save()
 
     return redirect('index')

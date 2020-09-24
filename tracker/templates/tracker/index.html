@@ -27,8 +27,7 @@
           <div class="left-half">
             <div class="tracker-box">
               <form action="{% url 'add' %}" method="POST" role="form">
-                {% csrf_token %} {{ form.title }}
-
+                {% csrf_token %} {{ form.title }} {{ form.project }}
                 <button type="submit">Start</button>
                 <button type="button">End</button>
               </form>
