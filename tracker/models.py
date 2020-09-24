@@ -11,6 +11,7 @@ class Activity(models.Model):
     startTime = models.DateTimeField(default=datetime.now())
     endTime = models.DateTimeField(null=True, blank=True)
     complete = models.BooleanField(default=False)
+    totalTime = models.IntegerField(default=0)
     project = models.ForeignKey('Project', on_delete=models.CASCADE)
 
     def __str__(self):

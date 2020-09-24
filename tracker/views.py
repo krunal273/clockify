@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from datetime import datetime
 
@@ -8,8 +9,8 @@ from .forms import ActivityForm, ProjectForm
 from .models import Activity, Project
 
 
-def index(request):
-    """  """
+def tracker(request):
+    """ tracker page """
     formActivity = ActivityForm
     formProject = ProjectForm
     activity = Activity.objects.order_by('-startTime')
@@ -52,6 +53,18 @@ def complete(request, activity_id):
     activity = Activity.objects.get(pk=activity_id)
     activity.complete = True
     activity.endTime = datetime.now()
+    activity.totalTime = (
+        activity.endTime - activity.startTime.replace(tzinfo=None)).total_seconds()
     activity.save()
 
     return redirect('index')
+
+
+def dashboard(request):
+    return render(request, 'tracker/dashboard.html', {'hello': 'dashboard works'})
+
+
+def fetchData(request):
+    print(request.method)
+    activities = list(Activity.objects.values('startTime', 'totalTime'))
+    return JsonResponse({'data': activities})

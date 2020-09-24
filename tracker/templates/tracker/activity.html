@@ -1,5 +1,5 @@
 {% extends 'tracker/index.html' %} {% block content %}
-
+{% load static %}
 <div class="row">
   <div class="left-half">
     <h1>Add Activity Here</h1>
@@ -36,9 +36,9 @@
       <b>Project:- </b> {{ac.project}} <br />
       <b>Start Time:- </b> {{ac.startTime}} <br />
       <b>End Time:- </b> {{ac.endTime}} <br />
-        {% if ac.complete == False %}
-            <a class="end-time" href="{% url 'complete' ac.id %}">End Time</a>
-        {% endif %}
+      {% if ac.complete == False %}
+      <a class="end-time" href="{% url 'complete' ac.id %}">End Time</a>
+      {% endif %}
       <br />
 
       <span id="displayTime-{{ac.id}}"></span>
@@ -47,4 +47,8 @@
   </ul>
 </div>
 
-{% endblock content %}
+{% endblock content %} 
+
+{% block script %}
+    <script src="{% static '/js/main.js' %}"></script>
+{% endblock script %}
