@@ -1,48 +1,50 @@
 {% extends 'tracker/index.html' %} {% block content %}
 
 <div class="row">
-    <div class="left-half">
-        <h1>Add Activity Here</h1>
-        <div class="tracker-box">
-            <form action="{% url 'add' %}" method="POST" role="form">
-                {% csrf_token %} {{ formActivity.title }} {{ formActivity.project }}
-                <button type="submit" value="activity">Start</button>
-                <button type="button">End</button>
-            </form>
-        </div>
+  <div class="left-half">
+    <h1>Add Activity Here</h1>
+    <div class="tracker-box">
+      <form action="{% url 'add' %}" method="POST" role="form">
+        {% csrf_token %} {{ formActivity.title }} {{ formActivity.project }}
+        <button type="submit" value="activity">Start</button>
+      </form>
     </div>
-    <div class="right-half">
-        <h1>Add Project Here</h1>
+  </div>
+  <div class="right-half">
+    <h1>Add Project Here</h1>
 
-        <form action="{% url 'project' %}" method="POST" role="form">
-            {% csrf_token %} {{ formProject.title }}
-            <button type="submit" value="project">Add Project</button>
-        </form>
-
-        <h2>Activity name: Unknown</h2>
-        <h2>Start Time:</h2>
-        <h2>End Time:</h2>
-    </div>
+    <form action="{% url 'project' %}" method="POST" role="form">
+      {% csrf_token %} {{ formProject.title }}
+      <button type="submit" value="project">Add Project</button>
+    </form>
+  </div>
 </div>
 
 <hr />
 
 <div class="list-activity">
-    <ul>
-        {% for ac in activity %}
-            {% if ac.complete %}
-                <li id="{{ac.id}}" data-complete="{{ac.complete}}" data-start="{{ac.startTime|date:'Y-m-d H:i:s'}}">{{ac.title}} - {{ac.startTime|date:'Y-m-d H:i:s'}}
-                    - {{ac.endTime|date:'Y-m-d H:i:s'}} - {{ac.complete}}</li>
-            {% else %}
-                <li id="{{ac.id}}" data-complete="{{ac.complete}}" data-start="{{ac.startTime|date:'Y-m-d H:i:s'}}">{{ac.title}} - {{ac.startTime|date:'Y-m-d H:i:s'}}
-                    - {{ac.endTime|date:'Y-m-d H:i:s'}} - {{ac.complete}}
+  <ul>
+    {% for ac in activity %}
 
-                    <br/><a href="{% url 'complete' ac.id %}">End Time</a>
-                    </li>
+    <li
+      id="{{ac.id}}"
+      data-complete="{{ac.complete}}"
+      data-start="{{ac.startTime|date:'Y-m-d H:i:s'}}"
+      data-end="{{ac.endTime|date:'Y-m-d H:i:s'}}"
+    >
+      <b>Title:- </b> {{ac.title}} <br />
+      <b>Project:- </b> {{ac.project}} <br />
+      <b>Start Time:- </b> {{ac.startTime}} <br />
+      <b>End Time:- </b> {{ac.endTime}} <br />
+        {% if ac.complete == False %}
+            <a class="end-time" href="{% url 'complete' ac.id %}">End Time</a>
         {% endif %}
-        {% endfor %}
-    </ul>
+      <br />
 
+      <span id="displayTime-{{ac.id}}"></span>
+    </li>
+    {% endfor %}
+  </ul>
 </div>
 
 {% endblock content %}

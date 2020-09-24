@@ -9,7 +9,7 @@ from datetime import datetime
 class Activity(models.Model):
     title = models.CharField(max_length=50)
     startTime = models.DateTimeField(default=datetime.now())
-    endTime = models.DateTimeField()
+    endTime = models.DateTimeField(null=True, blank=True)
     complete = models.BooleanField(default=False)
     project = models.ForeignKey('Project', on_delete=models.CASCADE)
 
