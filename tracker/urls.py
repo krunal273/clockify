@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('add', views.add, name='add'),
     path('project', views.project, name='project'),
+    path('complete/<activity_id>', views.complete, name='complete'),
 ]

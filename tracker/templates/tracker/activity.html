@@ -30,7 +30,16 @@
 <div class="list-activity">
     <ul>
         {% for ac in activity %}
-        <li id="{{ac.id}}">{{ac.title}} - {{ac.startTime}} - {{ac.endTime}} - {{ac.complete}}</li>
+            {% if ac.complete %}
+                <li id="{{ac.id}}" data-complete="{{ac.complete}}" data-start="{{ac.startTime|date:'Y-m-d H:i:s'}}">{{ac.title}} - {{ac.startTime|date:'Y-m-d H:i:s'}}
+                    - {{ac.endTime|date:'Y-m-d H:i:s'}} - {{ac.complete}}</li>
+            {% else %}
+                <li id="{{ac.id}}" data-complete="{{ac.complete}}" data-start="{{ac.startTime|date:'Y-m-d H:i:s'}}">{{ac.title}} - {{ac.startTime|date:'Y-m-d H:i:s'}}
+                    - {{ac.endTime|date:'Y-m-d H:i:s'}} - {{ac.complete}}
+
+                    <br/><a href="{% url 'complete' ac.id %}">End Time</a>
+                    </li>
+        {% endif %}
         {% endfor %}
     </ul>
 

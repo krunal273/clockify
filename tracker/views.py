@@ -12,7 +12,7 @@ def index(request):
     """  """
     formActivity = ActivityForm
     formProject = ProjectForm
-    activity = Activity.objects.all()
+    activity = Activity.objects.order_by('startTime')
 
     context = {'formActivity': formActivity,
                'formProject': formProject, 'activity': activity}
@@ -46,3 +46,19 @@ def project(request):
         project.save()
 
     return redirect('index')
+
+
+def complete(request, activity_id):
+    activity = Activity.objects.get(pk=activity_id)
+    activity.complete = True
+    activity.endTime = datetime.now()
+    activity.save()
+
+    return redirect('index')
+
+
+# def a():
+#     then = datetime(2020, 9, 23, 23, 8, 15)        # Random date in the past
+#     now = datetime.now()                         # Now
+#     duration = now - then                         # For build-in functions
+#     duration_in_s = duration.total_seconds()
