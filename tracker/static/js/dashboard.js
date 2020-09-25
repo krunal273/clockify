@@ -41,7 +41,7 @@ const svg = d3.select("#display-chart")
 d3.json("/fetch-data").then(data => {
 
     data = data.data;
-    console.log(data);
+    // console.log(data);
 
     // format the data
     data.forEach(function (d, i) {

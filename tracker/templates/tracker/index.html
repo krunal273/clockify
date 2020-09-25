@@ -19,6 +19,7 @@
         <ul>
           <li><a href="{% url 'index' %}" class="{% if request.resolver_match.url_name == "index" %}active{% endif %}">Tracker</a></li>
           <li><a href="{% url 'dashboard' %}" class="{% if request.resolver_match.url_name == "dashboard" %}active{% endif %}">Dashboard</a></li>
+          <li><a href="{% url 'search' %}" class="{% if request.resolver_match.url_name == "search" %}active{% endif %}">search</a></li>
         </ul>
       </div>
 

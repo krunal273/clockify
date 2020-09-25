@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
+from django.db.models import Q
 from datetime import datetime
 
 # Create your views here.
@@ -61,10 +62,30 @@ def complete(request, activity_id):
 
 
 def dashboard(request):
-    return render(request, 'tracker/dashboard.html', {'hello': 'dashboard works'})
+    return render(request, 'tracker/dashboard.html')
 
 
 def fetchData(request):
     print(request.method)
     activities = list(Activity.objects.values('startTime', 'totalTime'))
     return JsonResponse({'data': activities})
+
+
+def search(request):
+    if request.method == 'GET':
+        query = request.GET.get('q')
+
+        if query is not None:
+            lookups = Q(title__icontains=query)
+
+            activity = Activity.objects.filter(lookups).distinct()
+
+            context = {'activity': activity}
+
+            return render(request, 'tracker/search.html', context)
+
+        else:
+            return render(request, 'tracker/search.html')
+
+    else:
+        return render(request, 'tracker/search.html')

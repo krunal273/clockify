@@ -63,3 +63,4 @@ doneActivities.forEach(ele => {
     document.getElementById("displayTime-" + ele.id).innerText = "Days: " + days + " Hours: " + hours + " Minutes: " + minutes + " Seconds: " + seconds
 
 })
+

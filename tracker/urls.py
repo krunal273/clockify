@@ -8,5 +8,6 @@ urlpatterns = [
     path('project', views.project, name='project'),
     path('complete/<activity_id>', views.complete, name='complete'),
     path('dashboard', views.dashboard, name='dashboard'),
-    path('fetch-data', views.fetchData, name="fetch-data")
+    path('fetch-data', views.fetchData, name="fetch-data"),
+    path('search', views.search, name="search")
 ]

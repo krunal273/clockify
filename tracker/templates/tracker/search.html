@@ -1,26 +1,13 @@
-{% extends 'tracker/index.html' %} {% block content %} {% load static %}
-<div class="row">
-  <div class="left-half">
-    <h1>Add Activity Here</h1>
-    <div class="tracker-box">
-      <form action="{% url 'add' %}" method="POST" role="form">
-        {% csrf_token %} {{ formActivity.title }} {{ formActivity.project }}
-        <button type="submit" value="activity">Start</button>
-      </form>
-    </div>
-  </div>
-  <div class="right-half">
-    <h1>Add Project Here</h1>
+{% extends 'tracker/index.html' %} {% load static %} {% block content %}
 
-    <form action="{% url 'project' %}" method="POST" role="form">
-      {% csrf_token %} {{ formProject.title }}
-      <button type="submit" value="project">Add Project</button>
-    </form>
-  </div>
+<div class="row">
+  <form action="{% url 'search' %}" method="GET" role="form">
+    <input type="text" name="q" />
+    <button type="submit" value="project" id="search">Search Activity</button>
+  </form>
 </div>
 
-<hr />
-
+  {% if activity %}
 <div class="list-activity">
   <ul>
     {% for ac in activity %}
@@ -46,6 +33,12 @@
   </ul>
 </div>
 
+
+{% else %}
+
+    No activity
+
+{% endif %}
 {% endblock content %} {% block script %}
-<script src="{% static '/js/activity.js' %}"></script>
+<script src="{% static '/js/search.js' %}"></script>
 {% endblock script %}
