@@ -13,6 +13,10 @@ body {
     overflow: auto;
 }
 
+.sidebar h1 {
+    text-align: center;
+}
+
 .sidebar ul {
     padding: 0;
     margin: 50px 0 0 0;
@@ -132,9 +136,9 @@ select.project {
 .list-activity ul li {
     border: 1px solid #ddd;
     margin-top: -1px;
-    /* Prevent double borders */
     background-color: #f6f6f6;
     padding: 12px;
+    margin-bottom: 10px;
 }
 
 .end-time {
@@ -146,4 +150,17 @@ select.project {
     text-decoration: none;
     margin: -40px 25px;
     cursor: pointer;
+}
+
+.bar {
+    fill: #0080FF
+}
+
+.bar:hover {
+    fill: #003366
+}
+
+
+.text-second {
+    fill: black;
 }

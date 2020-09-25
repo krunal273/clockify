@@ -17,8 +17,8 @@
       <div class="sidebar">
         <h1>Clockify</h1>
         <ul>
-          <li><a href="{% url 'index' %}" class="active">Tracker</a></li>
-          <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+          <li><a href="{% url 'index' %}" class="{% if request.resolver_match.url_name == "index" %}active{% endif %}">Tracker</a></li>
+          <li><a href="{% url 'dashboard' %}" class="{% if request.resolver_match.url_name == "dashboard" %}active{% endif %}">Dashboard</a></li>
         </ul>
       </div>
 

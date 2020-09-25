@@ -1,16 +1,9 @@
 {% extends 'tracker/index.html' %} {% load static %} {% block content %}
-  {{ hello }}
-
-
-<div class="row">
-  <div class="left-half"></div>
-  <div class="right-half"></div>
+<div id="display-chart">
+ 
 </div>
 
-
-{% endblock content %}
-
-
-{% block script %}
-   <script src="{% static '/js/dashboard.js' %}"></script>
+{% endblock content %} {% block script %}
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src="{% static '/js/dashboard.js' %}"></script>
 {% endblock script %}
